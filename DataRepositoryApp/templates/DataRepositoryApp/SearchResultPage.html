@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% extends 'HomeApp/base.html' %}
+  {% load static %}
+  <link rel="stylesheet" href={% static "css/alumni_style.css" %}>
+  <meta charset="UTF-8">
+  {% block title %}
+  <title>Search Results</title>
+  <link rel="favicon" href="{% static "images/favicon.png" %}">
+  {% endblock %}
+
+<style>
+
+</style>
+
+
+</head>
+
+<body>
+
+  {% block body%}
+
+  <div class="container">
+
+  <div class="">
+        <div style="display: block; text-align: center">
+            <form style="margin-top: 2%;" class="form-inline" name="search_input_form" action="{% url 'DataRepositoryApp:search-result' %}" method="get">
+                {% csrf_token %}
+                <input name="search_field" style="margin-top: 0;height: 40px;display: inline-block !important; width: 50%!important" id="search_field" class="form-control" type="text" placeholder="Search" required/>
+                <button class="btn btn-primary" style="margin-top: 0; height: 40px;padding-left: 20px;padding-right: 20px;" name="searchbtn" type="submit"><i style="font-size: 12pt" class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+
+
+      <h1 style="text-align: center">  Search Result For "{{ search_key }}"</h1>
+
+      {% if search_result%}
+
+          <div class="col-md-12 col-sm-12">
+            {% for people in search_result %}
+                <div class="col-md-4 col-sm-4 heightFix" style="background: #FFFFFF; padding: 5px;padding-top: 20px;padding-bottom: 20px; border: 5px solid #eeeeee">
+                    <div>
+
+                        <div class="col-md-6">
+                            {% if people.profile_picture %}
+                            <a href="{% url 'DataRepositoryApp:get-profile' people.pk %}">
+                                <img style="cursor: pointer" alt="User Pic" src="{{ people.profile_picture.url }}" class="img-responsive">
+                            </a>
+                            {% else %}
+                            <a href="{% url 'DataRepositoryApp:get-profile' people.pk %}">
+                                <img alt="User Pic" src="{% static 'images/nobody_m.original.jpg' %}" class="img-responsive">
+                            </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 heightFixInner">
+                            <p class="cardDetail"><a href="{% url 'DataRepositoryApp:get-profile' people.pk %}" style="color: #6E6E6E;" >{{ people.name }}</a></p>
+                            <p style="color: #6E6E6E;" class="cardDetail">{{ people.current_position }}</p>
+                            <p class="cardDetail"><a href="{% url 'DataRepositoryApp:get-session' people.session %}" style="color: #6E6E6E;" >{{ people.session }}</a></p>
+                            <p style="color: #6E6E6E;" class="cardDetail">{{ people.contact_no }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+          </div>
+      {% else %}
+          <div class="jumbotron">
+              <h1 style="text-align: center" class="warning">No Result Found!!!</h1>
+          </div>
+
+      {% endif %}
+
+  </div>
+
+  {% endblock %}
+
+</body>
+
+</html>

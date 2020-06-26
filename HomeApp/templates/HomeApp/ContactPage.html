@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% extends 'HomeApp/base.html' %}
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/alumni_style.css" %}>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Contact</title>
+    <link rel="favicon" href="{% static "images/favicon.png" %}">
+    {% endblock %}
+</head>
+
+<body>
+
+    {% block body%}
+
+        <div class="container" style="margin-top: 2%">
+            <div class="row" style="padding: 30px; padding-bottom: 50px">
+                <h1 style="display: flex; justify-content: center; margin-bottom: 30px">Contact</h1>
+
+                <div class="col-md-4 col-sm-4" style="text-align: center; margin-top: 20px">
+                    <div class="footerwidget" style="padding: 20px; height: 250px; background: #ffffff">
+                      <h2 class=""><i class="fa fa-map-marker"></i> Address</h2>
+                        <p>Department of Applied Chemistry & Chemical Engineering,</p>
+                        <p> University of Dhaka, Dhaka 1000</p>
+                    </div><!-- end widget -->
+                </div>
+                <div class="col-md-4 col-sm-4" style="text-align: center; margin-top: 20px">
+                    <div class="footerwidget" style="padding: 20px; height: 250px; background: #ffffff">
+                      <h2><i class="fa fa-envelope"></i> Email</h2>
+                        <p>Send Email</p>
+                      <a target="_blank" href="mailto:crystal.acce@hotmail.com">crystal.acce@hotmail.com</a>
+                    </div><!-- end widget -->
+                </div>
+                <div class="col-md-4 col-sm-4" style="text-align: center; margin-top: 20px">
+                    <div class="footerwidget" style="padding: 20px; height: 250px; background: #ffffff">
+                      <h2><i class="fa fa-facebook-square"></i> Facebook</h2>
+                        <p>Join us on Facebook</p>
+                        <a target="_blank" href="https://www.facebook.com/Crystal-100100281763858/?modal=admin_todo_tour">Crystal</a>
+                    </div><!-- end widget -->
+                </div>
+
+
+                <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+                <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet"/>
+                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="margin-top: 20px">
+
+                    <h2 class="text-center"><i class="fa fa-location-arrow"></i> Map View</h2>
+                    <div class="container" style="" id="osm-map"></div>
+                </div>
+                    <script>
+
+                        // Where you want to render the map.
+                        var element = document.getElementById('osm-map');
+
+                        // Height has to be set. You can do this in CSS too.
+                        element.style = 'height:300px; width: 100%;margin-top:10px;border: 3px solid #ffffff';
+
+                        // Create Leaflet map on map element.
+                        var map = L.map(element);
+
+                        // Add OSM tile leayer to the Leaflet map.
+                        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(map);
+
+                        // Target's GPS coordinates.
+                        var target = L.latLng('23.727342', '90.402321');
+
+                        // Set map's center to target with zoom 14.
+                        map.setView(target, 16);
+
+                        // Place a marker on the same location.
+                        L.marker(target).addTo(map);
+
+                        //lat: 23.727342, lng: 90.402321
+
+                    </script>
+                </div>
+
+            </div>
+    {% endblock %}
+
+</body>
+
+</html>

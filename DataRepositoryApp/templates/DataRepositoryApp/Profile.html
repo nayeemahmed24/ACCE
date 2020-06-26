@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% extends 'HomeApp/base.html' %}
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/alumni_style.css" %}>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Profile</title>
+    <link rel="favicon" href="{% static "images/favicon.png" %}">
+    {% endblock %}
+</head>
+
+<body>
+
+    {% block body%}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 style="justify-content: center;display: flex"><b>Profile</b></h2>
+        </div>
+        <div class="container">
+            <div class="row">
+
+            {% if people %}
+
+                <div class="panel-body" style="margin-top: 5%">
+
+                    <div class="col-md-5 col-xs-12 col-sm-6 col-lg-5">
+                        {% if people.profile_picture %}
+                        <img alt="User Pic" src="{{ people.profile_picture.url }}" class="img-circle img-responsive">
+                        {% else %}
+                        <img alt="User Pic" src="{% static 'images/nobody_m.original.jpg' %}"
+                            class="img-circle img-responsive">
+                        {% endif %}
+
+                        {#                          https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1#}
+
+                    </div>
+                    <div class="col-md-7 col-xs-12 col-sm-6 col-lg-7">
+                        <div class="" style="margin-top: 10%;margin-left: 10%">
+                            <h1>{{ people.name }}</h1>
+                            <h3><b>Session: {{ people.session }}</b></h3>
+                            <h4 style="margin-top: 10%"><span class="fa fa-building-o"
+                                    style="width: 50px"></span>{{ people.current_position }}</h4>
+                            <h4 style="margin-top: 5%"><span class="fa fa-phone"
+                                    style="width: 50px"></span>{{ people.contact_no }}</h4>
+                            <h4 style="margin-top: 5%"><span class="fa fa-envelope"
+                                    style="width: 50px"></span>{{ people.email }}</h4>
+                            <h4 style="margin-top: 5%"><span class="fa fa-home"
+                                    style="width: 50px"></span>{{ people.address }}</h4>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="jumbotron">
+                    <h1 style="text-align: center">Not Found!!!</h1>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
+</body>
+
+</html>

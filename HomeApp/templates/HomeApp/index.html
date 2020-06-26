@@ -1,0 +1,244 @@
+<!--
+Author: Koushik Sarker Seemanto
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% extends 'HomeApp/base.html' %}
+  {% load  static %}
+  {% block title %}
+  <title>Home</title>
+  <link rel="favicon" href="{% static "images/favicon.png" %}">
+
+      <style>
+        .card {
+          {% comment %}box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);{% endcomment %}
+            background: white;
+            padding: 20px;
+          transition: 0.3s;
+          width: 40%;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+
+      @media (max-width: 420px) {
+          .heading-text h1 {
+              font-size: 35px;
+          }
+      }
+      </style>
+  {% endblock %}
+
+</head>
+
+<body>
+
+  {% block body %}
+
+  <!-- Header -->
+  <header id="head">
+    <div class="container">
+      <div class="heading-text">
+        <div style="margin-top: 0" class="animated flipInY delay1"><h1 style="color: #414141;display: inline;padding-left: 2%; padding-right: 2%;background: #ebeed9; opacity: 0.7">Welcome to Crystal</h1></div>
+        <div><p style=" font-weight: bold;color: #414141;display: inline;padding-left: 2%; padding-right: 2%;background: #ebeed9; opacity: 0.7">Strength, Unity, Brilliance</p></div>
+      </div>
+
+      <div class="fluid_container">
+        <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
+            {% if carousels.0.carousel_pic %}
+                <div data-thumb="{{ carousels.0.carousel_pic.url }}" data-src="{{ carousels.0.carousel_pic.url }}"></div>
+            {% else %}
+                <div data-thumb="{% static 'images/ImageTemporarilyUnavailable.jpg' %}" data-src="{% static 'images/ImageTemporarilyUnavailable.jpg' %}"></div>
+            {% endif %}
+
+            {% if carousels.1.carousel_pic %}
+                <div data-thumb="{{ carousels.1.carousel_pic.url }}" data-src="{{ carousels.1.carousel_pic.url }}"></div>
+            {% else %}
+                <div data-thumb="{% static 'images/ImageTemporarilyUnavailable.jpg' %}" data-src="{% static 'images/ImageTemporarilyUnavailable.jpg' %}"></div>
+            {% endif %}
+
+            {% if carousels.2.carousel_pic %}
+                <div data-thumb="{{ carousels.2.carousel_pic.url }}" data-src="{{ carousels.2.carousel_pic.url }}"></div>
+            {% else %}
+                <div data-thumb="{% static 'images/ImageTemporarilyUnavailable.jpg' %}" data-src="{% static 'images/ImageTemporarilyUnavailable.jpg' %}"></div>
+            {% endif %}
+
+            {% comment %}<div data-thumb="{% static 'images/slides/img1.jpg' %}" data-src="{% static 'images/slides/img1.jpg' %}">
+                <h2>We develop.</h2>
+            </div>
+            <div data-thumb="{% static 'images/slides/img2.jpg' %}" data-src="{% static 'images/slides/img2.jpg' %}">
+            </div>
+            <div data-thumb="{% static 'images/slides/img3.jpg' %}" data-src="{% static 'images/slides/img3.jpg' %}">
+            </div>{% endcomment %}
+
+        </div><!-- #camera_wrap_3 -->
+      </div><!-- .fluid_container -->
+    </div>
+  </header>
+  <!-- /Header -->
+
+<div>
+  <section class="container">
+
+  <h1 style="display: flex;justify-content: center;margin-bottom: 2%">Events</h1>
+
+  <div class="mySlickClass" >
+      {% for event in events %}
+      <div>
+          <div class="card col-md-12 col-xs-12">
+              {% if event.notice_pic %}
+              <a href="{% url 'HomeApp:upcoming-event' event.pk %}">
+                  <img src="{{ event.notice_pic.url }}" alt="Avatar" style="cursor: pointer;width:100%">
+              </a>
+              {% else %}
+              <a href="{% url 'HomeApp:upcoming-event' event.pk %}">
+                <img src="{% static 'images/ImageTemporarilyUnavailable 640X640.jpg' %}" alt="Avatar" style="width:100%">
+              </a>
+              {% endif %}
+
+              <h4><b>{{ event.title }}</b></h4>
+          <hr style="border: 1px solid #1f92ff;">
+              <p class="" style="overflow: hidden;text-overflow: ellipsis;line-height: 16px;
+                    max-height: 64px;-webkit-box-orient: vertical">{{ event.description }}</p>
+              <p>Posted: {{ event.created_at }}</p>
+
+          <a href="{% url 'HomeApp:upcoming-event' event.pk %}">Read More</a>
+          </div>
+      </div>
+
+      {% endfor %}
+
+  </div>
+  </section>
+
+
+
+  {% comment %}<section class="news-box top-margin">
+    <div class="container">
+      <h2><span>New Courses</span></h2>
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+      <div class="row">
+
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="newsBox">
+            <div class="thumbnail">
+              <figure><img src={% static "images/news2.jpg" %} alt=""></figure>
+              <div class="caption maxheight2">
+                <div class="box_inner">
+                  <div class="box">
+                    <p class="title">
+                      <h5>Developer</h5>
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, conc tetu er adipi scing. Praesent ves tibuum molestie lacuiirhs.
+                      Aenean.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="newsBox">
+            <div class="thumbnail">
+              <figure><img src={% static "images/news3.jpg" %} alt=""></figure>
+              <div class="caption maxheight2">
+                <div class="box_inner">
+                  <div class="box">
+                    <p class="title">
+                      <h5>Photography </h5>
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, conc tetu er adipi scing. Praesent ves tibuum molestie lacuiirhs.
+                      Aenean.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="newsBox">
+            <div class="thumbnail">
+              <figure><img src={% static "images/news4.jpg" %} alt=""></figure>
+              <div class="caption maxheight2">
+                <div class="box_inner">
+                  <div class="box">
+                    <p class="title">
+                      <h5>Audio Editing</h5>
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, conc tetu er adipi scing. Praesent ves tibuum molestie lacuiirhs.
+                      Aenean.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>{% endcomment %}
+
+
+
+  <section class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="title-box clearfix ">
+          <h2 class="title-box_primary">About Us</h2>
+        </div>
+        <p><span>
+            Crystal was formally known as Association of Students of Jagannath Hall, ACCE, University of Dhaka. It has been conducting many activities like arranging the Saraswati Puja representing the department, organizing re unions and study tours.
+        </span></p>
+        <p>But to do this activities in an organized way, a formal name “Crystal” was given in 2019 during the Saraswati Puja and a souvenir (Nano) was also published containing the writings  of current students and the profile of current students.</p>
+        <p>Our organization aims to enrich the current activities more elaborately and create a strong bond between the current students and the alumni of Department of Applied Chemistry and Chemical Engineering (Male Hindu students of Jagannath hall and Female Hindu students of other halls).</p>
+        <a href="{% url 'HomeApp:aboutus-view' %}" title="read more" class="btn-inline " target="_self">read more</a>
+      </div>
+
+
+      <div class="col-md-4">
+        <div class="title-box clearfix ">
+          <h2 class="title-box_primary">Useful Links</h2>
+        </div>
+        <div class="list styled custom-list">
+          <ul>
+            <li><a target="_blank" href="https://www.du.ac.bd/">University of Dhaka</a></li>
+            <li><a target="_blank" href="https://www.du.ac.bd/academic/department_item/ACT">Department of Applied Chemistry & Chemical Engineering</a></li>
+            <li><a target="_blank" href="http://acschapterdu.org">ACS Student Chapter</a></li>
+            <li><a target="_blank" href="https://duaa-bd.org/">DU Alumni Association</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}
+
+      {% block script %}
+          <script>
+    jQuery(function () {
+
+      jQuery('#camera_wrap_4').camera({
+        transPeriod: 500,
+        time: 3000,
+        height: '600',
+        loader: 'false',
+        pagination: true,
+        thumbnails: false,
+        hover: false,
+        playPause: false,
+        navigation: false,
+        opacityOnGrid: false,
+        imagePath: 'images/'
+      });
+
+    });
+
+  </script>
+
+  {% endblock %}
+
+</body>
+
+</html>

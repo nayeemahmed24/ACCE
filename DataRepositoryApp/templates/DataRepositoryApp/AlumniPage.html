@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% extends 'HomeApp/base.html' %}
+  {% load static %}
+  <link rel="stylesheet" href={% static "css/alumni_style.css" %}>
+  <meta charset="UTF-8">
+  {% block title %}
+  <title>Alumni</title>
+  <link rel="favicon" href="{% static "images/favicon.png" %}">
+  {% endblock %}
+
+</head>
+
+<body>
+
+{% block body%}
+
+<div class="container">
+
+    <div class="">
+        <div style="display: block; text-align: center">
+            <form style="margin-top: 2%;" class="form-inline" name="search_input_form" action="{% url 'DataRepositoryApp:search-result' %}" method="get">
+                {% csrf_token %}
+                <input name="search_field" style="margin-top: 0;height: 40px;display: inline-block !important; width: 50%!important" id="search_field" class="form-control" type="text" placeholder="Search" required/>
+                <button class="btn btn-primary" style="margin-top: 0; height: 40px;padding-left: 20px;padding-right: 20px;" name="searchbtn" type="submit"><i style="font-size: 12pt" class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1 style="display: flex; justify-content: center">Alumni List</h1>
+        {% for session_wise in list_of_people %}
+            {% if session_wise.0 and session_wise.1 %}
+                <div class="col-md-12 col-sm-12">
+                    <h2 style="background: #FFFFFF;padding: 1%"><a style="color: #414141" href="{% url 'DataRepositoryApp:get-session' session_wise.0 %}">Session: {{ session_wise.0 }}</a></h2>
+                    {% for individual_people in session_wise.1 %}
+
+                        <div class="col-md-4 col-sm-4 heightFix" style="background: #FFFFFF; padding: 5px;padding-top: 20px;padding-bottom: 20px; border: 5px solid #eeeeee; place-content: center">
+                            <div class="col-md-6">
+                                {% if individual_people.profile_picture %}
+                                <a href="{% url 'DataRepositoryApp:get-profile' individual_people.pk %}">
+                                    <img style="cursor: pointer" alt="User Pic" src="{{ individual_people.profile_picture.url }}" class="img-responsive">
+                                </a>
+                                {% else %}
+                                <a href="{% url 'DataRepositoryApp:get-profile' individual_people.pk %}">
+                                    <img alt="User Pic" src="{% static 'images/nobody_m.original.jpg' %}" class="img-responsive">
+                                </a>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 heightFixInner">
+
+                                <p class="cardDetail"><a href="{% url 'DataRepositoryApp:get-profile' individual_people.pk %}" style="color: #414141;" >{{ individual_people.name }}</a></p>
+                                <p style="color: #414141;" class="cardDetail">{{ individual_people.current_position }}</p>
+                                <p style="color: #414141;" class="cardDetail">{{ individual_people.contact_no }}</p>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
+
+</body>
+
+</html>

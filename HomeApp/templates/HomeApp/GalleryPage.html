@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% extends 'HomeApp/base.html' %}
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/alumni_style.css" %}>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Photo Gallery</title>
+    {% endblock %}
+</head>
+
+<body>
+
+    {% block body%}
+
+        <div class="container" style="background: #FFFFFF;margin-top: 2%">
+            <div class="row">
+                <h1 style="display: flex; justify-content: center">Photo Gallery</h1>
+                {% for i in notices %}
+                    <div class="col-md-12 col-sm-12">
+                        {% for img in list_of_event %}
+                            {% if img.0 == i and img.1 %}
+                                <h2 class="" style="background: #eeeeee;padding: 1%">{{ img.0.title }}</h2>
+                                {% for im in img.1 %}
+                                    <div class="col-md-4 col-lg-3 col-sm-4" style="margin-top: 2%;">
+                                        <img class="Shadow" src="{{ im.image_field.url }}">
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            <div style="height: 20px"></div>
+            <div></div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+  {% load static %}
+  <link rel='icon' href="{% static 'images/favicon_logo.png' %}">
+
+
+
+  {% block title %}
+
+  {% endblock %}
+
+
+
+  <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+
+
+  {#    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">#}
+  {#    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">#}
+
+
+  <link rel="stylesheet" href={% static "css/bootstrap.min.css" %}>
+
+  <link rel="stylesheet" href={% static "css/font-awesome.min.css" %}>
+
+  <link rel="stylesheet" type="text/css" href="{% static "css/slick.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/slick-theme.css" %}">
+
+  <link rel="stylesheet" href={% static "css/bootstrap-theme.css" %} media="screen">
+  <link rel="stylesheet" href={% static "css/style.css" %}>
+  <link rel='stylesheet' id='camera-css' href={% static 'css/camera.css' %} type='text/css' media='all'>
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+	<script src={% static "js/html5shiv.js" %}></script>
+	<script src={% static "js/respond.min.js" %}></script>
+	<![endif]-->
+
+    <style>
+        .fixed-div{
+                position: fixed;
+                right: 0;
+                left: 0;
+                z-index: 1030;
+                -webkit-transform: translate3d(0,0,0);
+                -o-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+            }
+        @media only screen and (max-width: 767px) {
+            .navbar-inverse .navbar-brand img  {
+                height: 130%;
+                margin-top: -5px;
+            }
+            .navbar-inverse{
+                min-height: 80px;
+                padding: 0;
+            }
+
+        }
+
+        @media (min-width: 768px) {
+            .navbar-inverse .navbar-brand img  {
+                height: 170%;
+                margin-top: -30px;
+            }
+        }
+
+        @media (max-width: 420px) {
+        .heading-text h1 {
+                font-size: 35px;
+            }
+        }
+        @media (max-width: 991px) {
+        .heightFixInner{
+                height: 150px;
+                overflow: hidden;
+            }
+
+        }
+        @media (min-width: 992px) {
+            .heightFix{
+                height: 225px;
+                overflow: hidden;
+            }
+        }
+        @media (max-width: 767px) {
+            .about-us{
+                padding-left: 5%;
+                padding-right: 5%;
+                font-size: 14pt;
+                line-height: 24pt
+            }
+            .extra-height{
+                padding-top: 70px;
+            }
+        }
+        @media (min-width: 768px) {
+            .about-us{
+                padding-left: 10%;
+                padding-right: 10%;
+                font-size: 16pt;
+                line-height: 28pt;
+            }
+            .extra-height{
+                padding-top: 90px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body style="background: #eeeeee">
+  <!-- Fixed navbar -->
+  <div class="fixed-div navbar navbar-inverse" style="border-bottom: 5px solid #ffe6c2; background: #ffe6c2">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- Button for smallest screens -->
+        <button type="button" class="toggle-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <i class="fa fa-bars" style="font-size: 20pt; padding-right: 5px;padding-left: 5px ; color: white"></i>
+        </button>
+        <a class="navbar-brand" href="{% url 'HomeApp:home' %}">
+          <img class="logoImage" src={% static "images/logo-bg.png" %}></a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav pull-right mainNav">
+          <li><a style="color: #373737;" href="{% url 'HomeApp:home' %}">Home</a></li>
+            <li><a style="color: #373737;" href="{% url 'HomeApp:events' %}">Events</a></li>
+          <li><a style="color: #373737;" href="{% url 'DataRepositoryApp:get-alumni' %}">Alumni</a></li>
+            <li><a style="color: #373737;" href="{% url 'HomeApp:gallery-view' %}">Gallery</a></li>
+          <li><a style="color: #373737;" href="{% url 'HomeApp:aboutus-view' %}">About</a></li>
+          <li><a style="color: #373737;" href="{% url 'HomeApp:contact-view' %}">Contact</a></li>
+
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
+  <!-- /.navbar -->
+
+  <p class="extra-height" ></p>
+  {% block body %}
+  {% endblock %}
+
+
+  <footer id="footer">
+
+    <div class="container">
+      <div class="row">
+        <div class="footerbottom">
+{#          <div class="col-md-3 col-sm-6">#}
+{#            <div class="footerwidget">#}
+{#              <h4>#}
+{#                Course Categories#}
+{#              </h4>#}
+{#              <div class="menu-course">#}
+{#                <ul class="menu">#}
+{#                  <li><a href="#">#}
+{#                      List of Technology#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li><a href="#">#}
+{#                      List of Business#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li><a href="#">#}
+{#                      List of Photography#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li><a href="#">#}
+{#                      List of Language#}
+{#                    </a>#}
+{#                  </li>#}
+{#                </ul>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="col-md-3 col-sm-6">#}
+{#            <div class="footerwidget">#}
+{#              <h4>#}
+{#                Products Categories#}
+{#              </h4>#}
+{#              <div class="menu-course">#}
+{#                <ul class="menu">#}
+{#                  <li> <a href="#">#}
+{#                      Individual Plans </a>#}
+{#                  </li>#}
+{#                  <li><a href="#">#}
+{#                      Business Plans#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li><a href="#">#}
+{#                      Free Trial#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li><a href="#">#}
+{#                      Academic#}
+{#                    </a>#}
+{#                  </li>#}
+{#                </ul>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="col-md-3 col-sm-6">#}
+{#            <div class="footerwidget">#}
+{#              <h4>#}
+{#                Browse by Categories#}
+{#              </h4>#}
+{#              <div class="menu-course">#}
+{#                <ul class="menu">#}
+{#                  <li><a href="#">#}
+{#                      All Courses#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li> <a href="#">#}
+{#                      All Instructors#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li><a href="#">#}
+{#                      All Members#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li>#}
+{#                    <a href="#">#}
+{#                      All Groups#}
+{#                    </a>#}
+{#                  </li>#}
+{#                </ul>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+          <div class="col-md-12 col-sm-12" style="text-align: center">
+            <div class="footerwidget">
+              <h4>Contact</h4>
+              <div class="contact-info">
+                <i class="fa fa-map-marker"></i> Department of Applied Chemistry <br>& Chemical Engineering - DU<br>
+                <i class="fa fa-phone"></i>Temporary Unavailable <br>
+                <a style="color: #414141" href="mailto:crystal.acce@hotmail.com"><i class="fa fa-envelope"></i> crystal.acce@hotmail.com </a> <br>
+                <a style="color: #414141" href="https://www.facebook.com/Crystal-100100281763858/?modal=admin_todo_tour"><i class="fa fa-facebook-square"></i> Crystal</a>
+              </div>
+            </div><!-- end widget -->
+          </div>
+        </div>
+      </div>
+{#      <div class="social text-center">#}
+
+      <div class="clear"></div>
+      <!--CLEAR FLOATS-->
+    </div>
+    <div class="footer2" style="margin-top: 2%">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-6 panel">
+            <div class="panel-body">
+              <p class="simplenav">
+                <a href="{% url 'HomeApp:home' %}">Home</a> |
+                <a href="{% url 'HomeApp:events' %}">Event</a> |
+                <a href="{% url 'DataRepositoryApp:get-alumni' %}">Alumni</a> |
+                <a href="{% url 'HomeApp:gallery-view' %}">Gallery</a> |
+                <a href="{% url 'HomeApp:aboutus-view' %}">About Us</a> |
+                <a href="{% url 'HomeApp:contact-view' %}">Contact</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 panel">
+            <div class="panel-body">
+              <p class="text-right" style="margin-right: 5%">
+                Copyright &copy; 2020. by PaidPiper.
+              </p>
+            </div>
+          </div>
+
+        </div>
+        <!-- /row of panels -->
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <script src={% static "js/modernizr-latest.js" %}></script>
+  <script type='text/javascript' src={% static 'js/jquery.min.js' %}></script>
+  <script type='text/javascript' src={% static 'js/fancybox/jquery.fancybox.pack.js' %}></script>
+  <script type='text/javascript' src={% static 'js/slick.min.js' %}></script>
+
+
+  <script type="text/javascript">
+    $('.mySlickClass').slick({
+      dots: true,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+
+  </script>
+  {% block script %}
+  {% endblock %}
+
+  <script type='text/javascript' src={% static 'js/jquery.mobile.customized.min.js' %}></script>
+  <script type='text/javascript' src={% static 'js/jquery.easing.1.3.js' %}></script>
+  <script type='text/javascript' src={% static 'js/camera.min.js' %}></script>
+  <script src={% static "js/bootstrap.min.js" %}></script>
+  <script src={% static "js/custom.js" %}></script>
+
+
+
+</body>
+
+</html>
